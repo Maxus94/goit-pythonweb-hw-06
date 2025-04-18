@@ -310,7 +310,7 @@ def select_action():
                     session.add(grade)
                     session.commit()
                     print(
-                        f"Grade {grade.grade} for student with ID {grade.student_id} subject ID {grade.subject_id} was added"
+                        f"Grade {grade.grade} for student {grade.student.name} subject {grade.subject.name} was added"
                     )
                 except Exception as e:
                     print(e)
@@ -354,7 +354,9 @@ def select_action():
                 if args.subject_id:
                     grade.subject_id = args.subject_id
                 session.commit()
-                print(f"Grade with ID {args.id} was updated")
+                print(
+                    f"Grade with ID {args.id} for student {grade.student.name} subject {grade.subject.name} was updated"
+                )
             except Exception as e:
                 print(e)
             finally:
@@ -370,7 +372,9 @@ def select_action():
                     raise Exception(f"Grade with ID {args.id} does not exist")
                 session.delete(grade)
                 session.commit()
-                print(f"Grade with ID {args.id} was deleted")
+                print(
+                    f"Grade with ID {args.id} for student {grade.student.name} subject {grade.subject.name} was deleted"
+                )
             except Exception as e:
                 print(e)
             finally:
